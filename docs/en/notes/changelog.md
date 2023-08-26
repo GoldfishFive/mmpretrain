@@ -1,5 +1,46 @@
 # Changelog (MMPreTrain)
 
+## v1.0.2(15/08/2023)
+
+### New Features
+
+- Add MFF ([#1725](https://github.com/open-mmlab/mmpretrain/pull/1725))
+- Support training of BLIP2 ([#1700](https://github.com/open-mmlab/mmpretrain/pull/1700))
+
+### Improvements
+
+- New Version of config Adapting MAE Algorithm ([#1750](https://github.com/open-mmlab/mmpretrain/pull/1750))
+- New Version of config Adapting ConvNeXt Algorithm ([#1760](https://github.com/open-mmlab/mmpretrain/pull/1760))
+- New version of config adapting BeitV2 Algorithm ([#1755](https://github.com/open-mmlab/mmpretrain/pull/1755))
+- Update `dataset_prepare.md` ([#1732](https://github.com/open-mmlab/mmpretrain/pull/1732))
+- New Version of `config` Adapting Vision Transformer Algorithm ([#1727](https://github.com/open-mmlab/mmpretrain/pull/1727))
+- Support Infographic VQA dataset and ANLS metric. ([#1667](https://github.com/open-mmlab/mmpretrain/pull/1667))
+- Support IconQA dataset. ([#1670](https://github.com/open-mmlab/mmpretrain/pull/1670))
+- Fix typo MIMHIVIT to MAEHiViT ([#1749](https://github.com/open-mmlab/mmpretrain/pull/1749))
+
+## v1.0.1(28/07/2023)
+
+### Improvements
+
+- Add init_cfg with type='pretrained' to downstream tasks ([#1717](https://github.com/open-mmlab/mmpretrain/pull/1717)
+- Set 'is_init' in some multimodal methods ([#1718](https://github.com/open-mmlab/mmpretrain/pull/1718)
+- Adapt test cases on Ascend NPU ([#1728](https://github.com/open-mmlab/mmpretrain/pull/1728)
+- Add GPU Acceleration Apple silicon mac ([#1699](https://github.com/open-mmlab/mmpretrain/pull/1699)
+- BEiT refactor ([#1705](https://github.com/open-mmlab/mmpretrain/pull/1705)
+
+### Bug Fixes
+
+- Fix dict update in minigpt4. ([#1709](https://github.com/open-mmlab/mmpretrain/pull/1709)
+- Fix nested predict for multi-task prediction ([#1716](https://github.com/open-mmlab/mmpretrain/pull/1716)
+- Fix the issue #1711 "GaussianBlur doesn't work" ([#1722](https://github.com/open-mmlab/mmpretrain/pull/1722)
+- Just to correct a typo of 'target' ([#1655](https://github.com/open-mmlab/mmpretrain/pull/1655)
+- Fix freeze without cls_token in vit ([#1693](https://github.com/open-mmlab/mmpretrain/pull/1693)
+- Fix RandomCrop bug ([#1706](https://github.com/open-mmlab/mmpretrain/pull/1706)
+
+### Docs Update
+
+- Fix spelling ([#1689](https://github.com/open-mmlab/mmpretrain/pull/1689)
+
 ## v1.0.0(04/07/2023)
 
 ### Highlights
@@ -7,7 +48,7 @@
 - Support inference of more **multi-modal** algorithms, such as **LLaVA**, **MiniGPT-4**, **Otter**, etc.
 - Support around **10 multi-modal datasets**!
 - Add **iTPN**, **SparK** self-supervised learning algorithms.
-- Provide examples of [New Config](./mmpretrain/configs/) and [DeepSpeed/FSDP](./configs/mae/benchmarks/).
+- Provide examples of [New Config](https://github.com/open-mmlab/mmpretrain/tree/main/mmpretrain/configs/) and [DeepSpeed/FSDP](https://github.com/open-mmlab/mmpretrain/tree/main/configs/mae/benchmarks/).
 
 ### New Features
 

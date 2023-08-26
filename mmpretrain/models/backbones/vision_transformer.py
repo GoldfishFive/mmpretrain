@@ -436,7 +436,8 @@ class VisionTransformer(BaseBackbone):
         for param in self.pre_norm.parameters():
             param.requires_grad = False
         # freeze cls_token
-        self.cls_token.requires_grad = False
+        if self.cls_token is not None:
+            self.cls_token.requires_grad = False
         # freeze layers
         for i in range(1, self.frozen_stages + 1):
             m = self.layers[i - 1]
@@ -444,10 +445,16 @@ class VisionTransformer(BaseBackbone):
             for param in m.parameters():
                 param.requires_grad = False
         # freeze the last layer norm
-        if self.frozen_stages == len(self.layers) and self.final_norm:
-            self.ln1.eval()
-            for param in self.ln1.parameters():
-                param.requires_grad = False
+        if self.frozen_stages == len(self.layers):
+            if self.final_norm:
+                self.ln1.eval()
+                for param in self.ln1.parameters():
+                    param.requires_grad = False
+
+            if self.out_type == 'avg_featmap':
+                self.ln2.eval()
+                for param in self.ln2.parameters():
+                    param.requires_grad = False
 
     def forward(self, x):
         B = x.shape[0]
