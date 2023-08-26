@@ -1,0 +1,10 @@
+{
+    "name": "bs96_150e_tinyimanet_nopretrain",
+    "cwd": "/home/user01/projects/ssl/mmpretrain",
+    "script": "./tools/dist_train.sh",
+    "args": "configs/_custom/vit_base_bs96_tinyimagenet200.py 8",
+    "merge_logs": false,
+    "error_file": "/home/user01/projects/ssl/mmpretrain/work_dirs/vit_base_bs96_tinyimagenet200/error.log",
+    "out_file": "/home/user01/projects/ssl/mmpretrain/work_dirs/vit_base_bs96_tinyimagenet200/info.log",
+    "autorestart" :false
+  }

@@ -11,7 +11,7 @@ from .dtd import DTD
 from .fgvcaircraft import FGVCAircraft
 from .flowers102 import Flowers102
 from .food101 import Food101
-from .imagenet import ImageNet, ImageNet21k
+from .imagenet import ImageNet, ImageNet21k, TinyImageNet
 from .inshop import InShop
 from .mnist import MNIST, FashionMNIST
 from .multi_label import MultiLabelDataset
@@ -28,7 +28,7 @@ from .voc import VOC
 __all__ = [
     'BaseDataset', 'CIFAR10', 'CIFAR100', 'CUB', 'Caltech101', 'CustomDataset',
     'DTD', 'FGVCAircraft', 'FashionMNIST', 'Flowers102', 'Food101', 'ImageNet',
-    'ImageNet21k', 'InShop', 'KFoldDataset', 'MNIST', 'MultiLabelDataset',
+    'ImageNet21k', 'TinyImageNet', 'InShop', 'KFoldDataset', 'MNIST', 'MultiLabelDataset',
     'MultiTaskDataset', 'NLVR2', 'OxfordIIITPet', 'Places205', 'SUN397',
     'StanfordCars', 'VOC', 'build_dataset'
 ]
