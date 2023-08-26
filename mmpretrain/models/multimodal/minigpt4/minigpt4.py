@@ -36,7 +36,7 @@ class MiniGPT4(BaseModel):
         raw_prompts (list): Prompts for training. Defaults to None.
         max_txt_len (int): Max token length while doing tokenization. Defaults
             to 32.
-        end_sym (str): Ended symbol of the sequence. Defaults to '\n'.
+        end_sym (str): Ended symbol of the sequence. Defaults to '\\n'.
         generation_cfg (dict): The config of text generation. Defaults to
             dict().
         data_preprocessor (:obj:`BaseDataPreprocessor`): Used for
@@ -79,6 +79,7 @@ class MiniGPT4(BaseModel):
         if vision_encoder_weight is not None:
             from mmengine.runner.checkpoint import load_checkpoint
             load_checkpoint(self.vision_encoder, vision_encoder_weight)
+            self.vision_encoder.is_init = True
         if freeze_vit:
             for name, param in self.ln_vision.named_parameters():
                 param.requires_grad = False
@@ -108,6 +109,9 @@ class MiniGPT4(BaseModel):
             state_dict = CheckpointLoader.load_checkpoint(
                 q_former_model_weight)['state_dict']
             self.load_state_dict(state_dict, strict=False)
+            # The ln_vision weights are also in the q-former checkpoint.
+            setattr(self.ln_vision, 'is_init', True)
+            setattr(self.q_former, 'is_init', True)
 
         if freeze_q_former:
             for name, param in self.q_former.named_parameters():
@@ -151,8 +155,8 @@ class MiniGPT4(BaseModel):
             top_p=0.9,
             repetition_penalty=1.0,
             length_penalty=1.0,
-            temperature=1.0,
-            **generation_cfg)
+            temperature=1.0)
+        self.generation_cfg.update(**generation_cfg)
 
         if hasattr(self, 'register_load_state_dict_post_hook'):
             self.register_load_state_dict_post_hook(self._load_llama_proj_hook)
