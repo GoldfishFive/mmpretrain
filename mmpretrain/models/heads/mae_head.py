@@ -85,7 +85,7 @@ class MAEPretrainHead(BaseModule):
 
         return target
 
-    def loss(self, pred: torch.Tensor, target: torch.Tensor,
+    def forward(self, pred: torch.Tensor, target: torch.Tensor,
              mask: torch.Tensor) -> torch.Tensor:
         """Generate loss.
 

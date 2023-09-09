@@ -17,8 +17,10 @@ from .simclr import SimCLR
 from .simmim import SimMIM, SimMIMSwinTransformer
 from .simsiam import SimSiam
 from .swav import SwAV
+from .segmae import SegMAE
 
 __all__ = [
+    'SegMAE',
     'BaseSelfSupervisor',
     'BEiTPretrainViT',
     'VQKD',

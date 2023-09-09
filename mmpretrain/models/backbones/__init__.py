@@ -56,8 +56,12 @@ from .vision_transformer import VisionTransformer
 from .vit_eva02 import ViTEVA02
 from .vit_sam import ViTSAM
 from .xcit import XCiT
+from .segmae_vit import SegMAEViT
+from .segmae_vit_vr import SegMAEVit_VR
 
 __all__ = [
+    'SegMAEViT',
+    'SegMAEVit_VR',
     'LeNet5',
     'AlexNet',
     'VGG',

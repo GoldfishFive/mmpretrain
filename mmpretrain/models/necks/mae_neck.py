@@ -56,10 +56,11 @@ class MAEPretrainDecoder(BaseModule):
                  mlp_ratio: int = 4,
                  norm_cfg: dict = dict(type='LN', eps=1e-6),
                  predict_feature_dim: Optional[float] = None,
+                 pad_with_cls_token: bool= False,
                  init_cfg: Optional[Union[List[dict], dict]] = None) -> None:
         super().__init__(init_cfg=init_cfg)
         self.num_patches = num_patches
-
+        self.pad_with_cls_token = pad_with_cls_token
         # used to convert the dim of features from encoder to the dim
         # compatible with that of decoder
         self.decoder_embed = nn.Linear(embed_dim, decoder_embed_dim, bias=True)
@@ -126,11 +127,15 @@ class MAEPretrainDecoder(BaseModule):
             shape B x (num_patches) x C.
         """
         # embed tokens
-        x = self.decoder_embed(x)
+        x = self.decoder_embed(x) # x.shape: [1,123,512]
 
         # append mask tokens to sequence
-        mask_tokens = self.mask_token.repeat(
-            x.shape[0], ids_restore.shape[1] + 1 - x.shape[1], 1)
+        if self.pad_with_cls_token:
+            mask_tokens = x[:, 0:1, :].repeat(1, ids_restore.shape[1] + 1 - x.shape[1], 1)
+        else:
+            mask_tokens = self.mask_token.repeat(
+                x.shape[0], ids_restore.shape[1] + 1 - x.shape[1], 1)
+
         x_ = torch.cat([x[:, 1:, :], mask_tokens], dim=1)
         x_ = torch.gather(
             x_,

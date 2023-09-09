@@ -1,0 +1,9 @@
+{
+"name": "get_In1K_FH_entropy",
+"cwd": "/home/user01/projects/ssl/mmpretrain",
+"script": "/home/user01/projects/ssl/mmpretrain/tools/get_felzenszwalb_map.py",
+"interpreter": "/home/user01/miniconda3/envs/mmpre/bin/python",
+"merge_logs": true,
+"out_file": "./tools/script/get_In1K_FH_entropy_info.log",
+"autorestart" :false
+}
