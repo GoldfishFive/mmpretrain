@@ -1,0 +1,12 @@
+{
+"name": "SegMAE_5e_in1k",
+"cwd": "/media/data1/wjy/projects/ssl/mmpretrain",
+"script": "/media/data1/wjy/projects/ssl/mmpretrain/tools/train.py",
+"args": "configs/_custom/pretrain/segmaevr_vit-base_5e_in1k.py --work-dir /media/data2/wjy/workdirs/segmaevr_vit-base_5e_in1k",
+
+"interpreter": "/media/data1/wjy/projects/crackSeg/media/data1/wjy/miniconda/envs/mmpretrain/bin/python",
+"out_file": "/media/data2/wjy/workdirs/segmaevr_vit-base_5e_in1k/info.log",
+"error_file": "/media/data2/wjy/workdirs/segmaevr_vit-base_5e_in1k/error.log",
+"env": {"CUDA_VISIBLE_DEVICES":1},
+"autorestart" :false
+}

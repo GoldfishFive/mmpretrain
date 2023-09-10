@@ -202,8 +202,28 @@ def count_file():
             img_list.append(os.path.join(c_root, i))
     print(len(img_list))
 
+def check_npy():
+    dataset_root = '/media/data2/imagenet_train_FH_500_500_entropy'
+    img_list = []
+    for c in os.listdir(dataset_root):
+        c_root = os.path.join(dataset_root, c)
+        for i in os.listdir(c_root):
+            img_list.append(os.path.join(c_root, i))
+    print(len(img_list))
+
+    error_path = []
+    for i in range(len(img_list)):
+        npy_path = img_list[i]
+        print(i)
+        try:
+            data = np.load(npy_path, allow_pickle=True)
+        except:
+            error_path.append(npy_path)
+    np.save('./ERROR_npy.npy', error_path)
+
 if __name__ == '__main__':
-    count_file()
+    # count_file()
+    check_npy()
     exit()
     # deal_COCO_Train()
     deal_imagenet1k_train()

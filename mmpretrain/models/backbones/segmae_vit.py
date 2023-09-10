@@ -261,7 +261,8 @@ class SegMAEViT(VisionTransformer):
 
         # masking: length -> length * mask_ratio
         # x, mask, ids_restore = self.random_masking(x, self.mask_ratio)
-        x, mask, ids_restore = self.seg_random_masking(x, data_sample)
+        # x, mask, ids_restore = self.seg_var_ratio_masking(x, data_sample)
+        x, mask, ids_restore = self.seg_var_ratio_masking_avg(x, data_sample)
 
         # append cls token
         cls_token = self.cls_token + self.pos_embed[:, :1, :]

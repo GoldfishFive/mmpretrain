@@ -213,7 +213,7 @@ class SegRandomResizedCrop(BaseTransform):
         seg_map = results['gt_seg_mask']
         seg_map = mmcv.imcrop(seg_map, bboxes=np.array([xmin, ymin, xmax, ymax]))
         results['gt_seg_mask'] = mmcv.imresize(
-            seg_map,
+            seg_map.astype(np.uint8),
             tuple(self.size[::-1]),
             interpolation='nearest',
             backend=self.backend)

@@ -1,5 +1,6 @@
 _base_ = [
-    '../datasets/val_imagenet_segmae_fh_entropy.py',
+    '../datasets/imagenet_segmae_fh_entropy.py',
+    # '../datasets/val_imagenet_segmae_fh_entropy.py',
     '../default_runtime.py',
 ]
 # model settingsm
@@ -15,7 +16,7 @@ model = dict(
         patch_size=16,
         mask_ratio=0.75,
         fix_mask_ratio=False,# True used the fixed mask_ratio 0.75 during training;
-        max_epochs=300, # when fix_mask_ratio is False, mask_ratio change from low_mask_ratio to high_mask_ratio
+        max_epochs=5, # when fix_mask_ratio is False, mask_ratio change from low_mask_ratio to high_mask_ratio
         low_mask_ratio=0.35,
         high_mask_ratio=0.75
     ),
@@ -67,24 +68,24 @@ param_scheduler = [
         start_factor=1e-4,
         by_epoch=True,
         begin=0,
-        end=30,
+        end=1,
         convert_to_iter_based=True),
     dict(
         type='CosineAnnealingLR',
-        T_max=270,
+        T_max=4,
         by_epoch=True,
-        begin=30,
-        end=300,
+        begin=1,
+        end=5,
         convert_to_iter_based=True)
 ]
 
 # runtime settings
 # pre-train for 300 epochs
-train_cfg = dict(type='EpochBasedTrainLoop',max_epochs=300)
+train_cfg = dict(type='EpochBasedTrainLoop',max_epochs=5)
 default_hooks = dict(
     logger=dict(type='LoggerHook', interval=100),
     # only keeps the latest 3 checkpoints
-    checkpoint=dict(type='CheckpointHook', interval=10, max_keep_ckpts=30))
+    checkpoint=dict(type='CheckpointHook', interval=1, max_keep_ckpts=3))
 
 custom_hooks = [
     dict(
